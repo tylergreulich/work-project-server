@@ -1,8 +1,6 @@
 const { gql } = require('apollo-server')
 
 const typeDefs = gql`
-  union AuthResult = Error | AuthData
-
   type AuthData {
     user: User
     accessToken: String
@@ -12,6 +10,8 @@ const typeDefs = gql`
     path: String!
     message: String!
   }
+
+  union AuthResult = Error | AuthData
 
   type User {
     id: String!
@@ -26,8 +26,8 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    register(email: String!, password: String!, image: String!): AuthResult!
-    login(email: String!, password: String!): AuthResult!
+    register(email: String!, password: String!, image: String!): AuthResult
+    login(email: String!, password: String!): AuthResult
     logout: Boolean!
   }
 `

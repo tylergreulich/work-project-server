@@ -46,6 +46,7 @@ const resolvers = {
 
       sendRefreshToken(res, createRefreshToken(user))
 
+      console.log('returning payload')
       return {
         accessToken: createAccessToken(user),
         user

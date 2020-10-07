@@ -28,7 +28,7 @@ const startServer = async () => {
 
   app.use(
     cors({
-      origin: 'http://localhost:3000',
+      origin: 'https://admiring-cray-192aa3.netlify.app/',
       credentials: true
     })
   )

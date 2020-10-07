@@ -36,8 +36,8 @@ const resolvers = {
       return true
     },
     login: async (_, { email, password }, { req, res }) => {
-      console.log('login running')
       const user = await User.findOne({ email })
+      console.log('user', user)
 
       if (!user) return false
 

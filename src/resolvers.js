@@ -33,26 +33,16 @@ const resolvers = {
         password: hashedPassword,
         image
       }).save()
-      return null
+      return true
     },
     login: async (_, { email, password }, { req, res }) => {
       const user = await User.findOne({ email })
 
-      if (!user)
-        return {
-          path: 'user',
-          message: 'No user found with that email',
-          accessToken: null
-        }
+      if (!user) return res.status(403).end({ error: 'User not found' })
 
       const isValid = await bcrypt.compare(password, user.password)
 
-      if (!isValid)
-        return {
-          path: 'user',
-          message: 'Password is invalid',
-          accessToken: null
-        }
+      if (!isValid) return res.status(403).end({ error: 'Password not valid' })
 
       sendRefreshToken(res, createRefreshToken(user))
 

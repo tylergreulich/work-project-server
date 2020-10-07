@@ -59,6 +59,8 @@ const startServer = async () => {
       return res.send({ ok: false, accessToken: '' })
     }
 
+    console.log('hello')
+
     sendRefreshToken(res, createRefreshToken(user))
 
     return res.send({ ok: true, accessToken: createAccessToken(user) })

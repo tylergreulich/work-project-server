@@ -70,7 +70,9 @@ const startServer = async () => {
     context: ({ req, res }) => ({
       req,
       res
-    })
+    }),
+    introspection: true,
+    playground: true
   })
 
   server.applyMiddleware({ app, cors: false })

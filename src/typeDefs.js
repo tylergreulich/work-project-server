@@ -4,11 +4,8 @@ const typeDefs = gql`
   type AuthData {
     user: User
     accessToken: String
-  }
-
-  type Error {
-    path: String!
-    message: String!
+    path: String
+    message: String
   }
 
   type User {
@@ -24,8 +21,8 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    register(email: String!, password: String!, image: String!): Boolean!
-    login(email: String!, password: String!): AuthData!
+    register(email: String!, password: String!, image: String!): AuthData
+    login(email: String!, password: String!): AuthData
     logout: Boolean!
   }
 `

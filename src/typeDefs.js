@@ -11,8 +11,6 @@ const typeDefs = gql`
     message: String!
   }
 
-  union AuthResult = Error | AuthData
-
   type User {
     id: String!
     email: String!
@@ -26,8 +24,8 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    register(email: String!, password: String!, image: String!): AuthResult
-    login(email: String!, password: String!): AuthResult
+    register(email: String!, password: String!, image: String!): Boolean!
+    login(email: String!, password: String!): AuthData!
     logout: Boolean!
   }
 `

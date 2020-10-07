@@ -39,15 +39,26 @@ const resolvers = {
       const user = await User.findOne({ email })
       console.log('user', user)
 
-      if (!user) return false
+      if (!user)
+        return [
+          {
+            path: 'user',
+            message: 'No user found with that email'
+          }
+        ]
 
       const isValid = await bcrypt.compare(password, user.password)
 
-      if (!isValid) return false
+      if (!isValid)
+        return [
+          {
+            path: 'user',
+            message: 'Password is invalid'
+          }
+        ]
 
       sendRefreshToken(res, createRefreshToken(user))
 
-      console.log('returning payload')
       return {
         accessToken: createAccessToken(user),
         user
